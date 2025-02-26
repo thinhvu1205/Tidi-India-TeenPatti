@@ -20688,6 +20688,7 @@ MonoBehaviour:
   isAlawayTop: 0
   isSetParentNull: 0
   isPlaySoundOpen: 1
+  teenPattiGameObject: {fileID: 5946879038762751401, guid: 323e2a436cf05c6459a10860acbf4838, type: 3}
   m_ConfigOffIGs:
   - {fileID: 1507422193}
   - {fileID: 1630293475}

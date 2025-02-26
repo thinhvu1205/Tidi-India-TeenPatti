@@ -489,4 +489,10 @@ public class TableView : BaseView
             edbPass.text = strIn;
         });
     }
+    //TODO:Tinh_Click_ItemBet_PlayTeenPatti
+    public void ClickItemBetTeenPatti(){
+        Config.curGameId = 8888;
+        UIManager.instance.showGame();
+    }
+    //endTodo
 }

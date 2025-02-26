@@ -4,6 +4,7 @@ using Spine.Unity;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using Globals;
 
 
 public class ItemGame : MonoBehaviour
@@ -69,5 +70,9 @@ public class ItemGame : MonoBehaviour
         {
             callbackClick.Invoke();
         }
+    }
+    public void ClickButtonTeenPatti()
+    {
+        UIManager.instance.openTableView();
     }
 }

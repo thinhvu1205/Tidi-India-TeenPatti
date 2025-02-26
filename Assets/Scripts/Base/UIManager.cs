@@ -647,6 +647,12 @@ public class UIManager : MonoBehaviour
                     gameView = Instantiate(loadPrefabGame("PopupMineFinding"), parentGame).GetComponent<MineFindingView>();
                     break;
                 }
+                case (int)Globals.GAMEID.TEEN_PATTI:
+                {
+                    Globals.Logging.Log("showGame TeenPattiView");
+                    gameView = Instantiate(loadPrefabGame("TeenPattiView"), parentGame).GetComponent<TeenPattiView>();
+                    break;
+                }
             //case (int)Globals.GAMEID.ROULETTE:
             //    {
             //        Globals.Logging.Log("showGame ROULETTE");
