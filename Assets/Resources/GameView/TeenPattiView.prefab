@@ -1993,11 +1993,11 @@ MonoBehaviour:
   isSetParentNull: 0
   isPlaySoundOpen: 1
   listPosView: []
-  playerViewPrefab: {fileID: 0}
-  lbInfo: {fileID: 0}
+  playerViewPrefab: {fileID: 7460399604938047188, guid: b8c60acfd169eed49820a71897a4128b, type: 3}
+  lbInfo: {fileID: 8395789145348119243}
   invitePrefab: {fileID: 0}
-  inviteContainer: {fileID: 0}
-  playerContainer: {fileID: 0}
+  inviteContainer: {fileID: 331730968759818370}
+  playerContainer: {fileID: 999640435723378271}
   txtGameName: {fileID: 0}
   m_HiddenPlayersTf: {fileID: 0}
   agTable: 0

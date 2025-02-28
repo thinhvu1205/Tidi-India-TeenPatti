@@ -455,6 +455,7 @@ public class LobbyView : BaseView
         {
             JObject data = (JObject)Config.listGame[i];
             int gameId = (int)data["id"];
+            Debug.LogError($"Tinh Total game: {Config.listGame.Count}");
             SkeletonDataAsset skeAsset = Resources.Load<SkeletonDataAsset>("AnimIconGame/" + gameId + "/skeleton_SkeletonData");
             if (skeAsset == null) continue;
             ItemGame item = null;

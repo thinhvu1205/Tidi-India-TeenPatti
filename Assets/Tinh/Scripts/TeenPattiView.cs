@@ -73,8 +73,38 @@ public class TeenPattiView : GameView
     {
         base.handleSTable(objData);
         JObject data = JObject.Parse(objData);
+        stateGame = Globals.STATE_GAME.VIEWING;
         JObject hitPot = (JObject)data["HitPot"];
         SoundManager.instance.playEffectFromPath(Globals.SOUND_GAME.START_GAME);
+        JArray ArrP = getJArray(data, "ArrP");
+        for (int i = 0; i < ArrP.Count; i++)
+        {
+            JObject dataPlayer = (JObject)ArrP[i];
+            Player player = getPlayerWithID(getInt(dataPlayer, "id"));
+            JArray Arr = getJArray(dataPlayer, "Arr");
+
+            if (player == thisPlayer)
+            {
+                for (int j = 0; j < Arr.Count; j++)
+                {
+                    JObject dataChip = (JObject)Arr[j];
+                    // int numberBet = convertBetToInteger(getListInt(dataChip, "N"), getInt(dataChip, "T"));
+                    // totalBet += getInt(dataChip, "M");
+                    // boxBet.onBet(numberBet, getInt(dataChip, "M"));
+                    // boxBet.creatDataBet();
+                    // effectDatCuocChip(player, getInt(dataChip, "M"), numberBet);
+                }
+            }
+            else
+            {
+                for (int j = 0; j < Arr.Count; j++)
+                {
+                    JObject dataChip = (JObject)Arr[j];
+                    // int numberBet = convertBetToInteger(getListInt(dataChip, "N"), getInt(dataChip, "T"));
+                    // effectDatCuocChip(player, getInt(dataChip, "M"), numberBet);
+                }
+            }
+        }
     }
     public override void handleLTable(JObject data)
     {

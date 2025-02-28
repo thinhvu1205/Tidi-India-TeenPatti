@@ -284,7 +284,7 @@ namespace Globals
         RONGHO = 8009,
         KARTU_QIU = 8805,
         MINE_FINDING = 8804,
-        TEEN_PATTI = 8888
+        TEEN_PATTI = 8888 //TODO:Set GameId
     }
     public enum DOTWEEN_TAG
     {

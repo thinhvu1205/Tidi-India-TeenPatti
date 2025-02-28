@@ -398,6 +398,7 @@ public class LoadConfig : MonoBehaviour
         {
             Config.listGame = new();
             JArray tempListGameJA = jConfig["listGame"] as JArray;
+            Debug.LogError($"Tinh tempListGameJA: {tempListGameJA}");
             List<GAMEID> sortedListGI = new() {
                 GAMEID.TONGITS_OLD, GAMEID.LUCKY9, GAMEID.PUSOY, GAMEID.TONGITS, GAMEID.TONGITS_JOKER,
                 GAMEID.BACCARAT, GAMEID.LUCKY_89, GAMEID.SABONG, GAMEID.SICBO, GAMEID.SLOTTARZAN, GAMEID.SLOT_INCA,
