@@ -343,4 +343,18 @@ public class TeenPattiView : GameView
             _CardNumberSNOC = null;
         }
     }
+
+    //TODO:Event Game
+    public void HandleStart(){
+
+    }
+    public void HandleStartBet(string objData){
+
+    }
+    public void HandleBet(string objData){
+
+    }
+    public void HandleFinish(string objData){
+
+    }
 }

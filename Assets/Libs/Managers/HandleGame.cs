@@ -257,6 +257,11 @@ public class HandleGame
                     ((MineFindingView)gameView).ProcessResponseData(jData);
                     break;
                 }
+            case (int)Globals.GAMEID.TEEN_PATTI:
+                {
+                HandleTeenPattiView.ProcessData(jData);
+                break;
+                }
         }
     }
     public static void nextEvt()
