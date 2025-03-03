@@ -31,6 +31,7 @@ using System.Threading;
 
 public class UIManager : MonoBehaviour
 {
+    [SerializeField] private Card testCard;
     public static UIManager instance = null;
     [SerializeField] Sprite sf_toast = null;
     [SerializeField] GameObject nodeLoad;
@@ -66,8 +67,12 @@ public class UIManager : MonoBehaviour
     private List<ButtonVipFarm> _VipFarmVFs = new();
     public long PusoyJackPot;
     public bool SendChatEmoToHiddenPlayers = false;
-
-
+    public int numTest;
+    [ContextMenu("Test")]
+    public void Test()
+    {
+        testCard.setTextureWithCode(numTest);
+    }
     public Sprite spAvatarMe;
     void Awake()
     {
@@ -647,7 +652,7 @@ public class UIManager : MonoBehaviour
                     gameView = Instantiate(loadPrefabGame("PopupMineFinding"), parentGame).GetComponent<MineFindingView>();
                     break;
                 }
-                case (int)Globals.GAMEID.TEEN_PATTI:
+            case (int)Globals.GAMEID.TEEN_PATTI:
                 {
                     Globals.Logging.Log("showGame TeenPattiView");
                     gameView = Instantiate(loadPrefabGame("TeenPattiView"), parentGame).GetComponent<TeenPattiView>();
