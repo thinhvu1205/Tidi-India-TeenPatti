@@ -13,7 +13,8 @@ public class TeenPattiView : GameView
     [SerializeField] private RectTransform panelButtonRect, chipContainer;
     [SerializeField] private TextMeshProUGUI textNumBlind, textNumChaal;
     [SerializeField] private GameObject chipPrefab;
-    [SerializeField] private Transform spawnArea;
+    [SerializeField] private Transform spawnArea, cardContainer;
+    [SerializeField] private GameObject cardPrefab;
     private List<ShowGroupBanner> _GroupBannerSGB = new();
     private List<List<int>> _CodeGroups = new();
     private ShowNumbOfCard _CardNumberSNOC;
@@ -393,7 +394,8 @@ public class TeenPattiView : GameView
     {
         Debug.Log($"Click Button Chaal");
         MovePanelButton(0);
-        SpawnChips(numChip*2);
+        SpawnChips(numChip * 2);
+        SpawnCard();
     }
     private void MovePanelButton(int y)
     {
@@ -412,12 +414,12 @@ public class TeenPattiView : GameView
             Vector3 spawnPosition = spawnArea.position;
             GameObject chipClone = Instantiate(chipPrefab, spawnPosition, Quaternion.identity, spawnArea);
             Vector3 randomOffset = new Vector3(Random.Range(-100, 100), Random.Range(-50, 50), 0);
-            Vector3 targetPosition = chipContainer.position + randomOffset;
-            chipClone.transform.DOJump(targetPosition, 100f, 1, 1f)
+            Vector3 targetPosition = chipContainer.localPosition + randomOffset;
+            chipClone.transform.SetParent(chipContainer, true);
+            chipClone.transform.DOLocalJump(targetPosition, 100f, 1, 1f)
                 .SetEase(Ease.OutQuad)
                 .OnComplete(() =>
                 {
-                    chipClone.transform.SetParent(chipContainer, true);
                     chipClone.transform.localPosition = randomOffset;
                 });
             ChipBetTeenPatti chipScript = chipClone.GetComponent<ChipBetTeenPatti>();
@@ -430,7 +432,25 @@ public class TeenPattiView : GameView
             clonedChipValues.Add(chipValue);
         }
 
-        Debug.Log($"Tổng số chip đã clone: {chipCount}");
-        Debug.Log("Giá trị các chip lần lượt: " + string.Join(", ", clonedChipValues));
+        Debug.Log($"Total Chip: {chipCount}");
+        Debug.Log($"Chip Value: {string.Join(", ", clonedChipValues)}");
+    }
+    private void SpawnCard()
+    {
+        for (int i = 0; i < 3; i++)
+        {
+            GameObject cardObj = Instantiate(cardPrefab, cardContainer);
+            Card cardScript = cardObj.GetComponent<Card>();
+
+            if (cardScript != null)
+            {
+                cardScript.setTextureWithCode(i + 1);
+            }
+            else
+            {
+                Debug.LogError("Card script is missing on instantiated object.");
+            }
+            cardObj.transform.localPosition = new Vector3(i * 100, 0, 0);
+        }
     }
 }

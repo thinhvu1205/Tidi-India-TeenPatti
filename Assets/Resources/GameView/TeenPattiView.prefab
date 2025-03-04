@@ -2143,8 +2143,8 @@ RectTransform:
   m_Children:
   - {fileID: 3713135470109197900}
   - {fileID: 331730968759818370}
-  - {fileID: 390703740277027439}
   - {fileID: 1815683265126127033}
+  - {fileID: 390703740277027439}
   - {fileID: 999640435723378271}
   - {fileID: 813951844558312559}
   - {fileID: 7145059760760095627}
@@ -2217,6 +2217,8 @@ MonoBehaviour:
   textNumChaal: {fileID: 0}
   chipPrefab: {fileID: 3444754206070034168, guid: 9c947b380bc48564fa3484efc516ec9f, type: 3}
   spawnArea: {fileID: 5897178724013426699}
+  cardContainer: {fileID: 390703740277027439}
+  cardPrefab: {fileID: 8540707173701570184, guid: 297b685619a404818b6c75913c4f0152, type: 3}
   numChip: 10
 --- !u!1 &4440885204598555909
 GameObject:
