@@ -1,16 +1,25 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using DG.Tweening;
 using Newtonsoft.Json.Linq;
+using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class TeenPattiView : GameView
 {
-    public static TeenPattiView instance = null;
-    private ShowNumbOfCard _CardNumberSNOC;
-    
+    [SerializeField] private Button buttonPack, buttonSideShow, buttonBlind, buttonChaal;
+    [SerializeField] private RectTransform panelButtonRect, chipContainer;
+    [SerializeField] private TextMeshProUGUI textNumBlind, textNumChaal;
+    [SerializeField] private GameObject chipPrefab;
+    [SerializeField] private Transform spawnArea;
     private List<ShowGroupBanner> _GroupBannerSGB = new();
-     private List<List<int>> _CodeGroups = new();
+    private List<List<int>> _CodeGroups = new();
+    private ShowNumbOfCard _CardNumberSNOC;
+    public int numChip;
+    public static TeenPattiView instance = null;
+
     protected override void Awake()
     {
         instance = this;
@@ -18,7 +27,11 @@ public class TeenPattiView : GameView
     }
     protected override void Start()
     {
-        base.Start();
+        // base.Start();
+        buttonPack.onClick.AddListener(ClickButtonPack);
+        buttonSideShow.onClick.AddListener(ClickButtonSideShow);
+        buttonBlind.onClick.AddListener(ClickButtonBlind);
+        buttonChaal.onClick.AddListener(ClickButtonChaal);
     }
     protected override void Update()
     {
@@ -26,7 +39,7 @@ public class TeenPattiView : GameView
     }
 
     //TODO: Override HandleGame
-     public override void setGameInfo(int m, int id = 0, int maxBet = 0)
+    public override void setGameInfo(int m, int id = 0, int maxBet = 0)
     {
         base.setGameInfo(m, id, maxBet);
         int countMode = 0, gameId = Globals.Config.curGameId;
@@ -194,7 +207,7 @@ public class TeenPattiView : GameView
         stateGame = Globals.STATE_GAME.WAITING;
         cleanTable();
     }
-    
+
     void updateGroupBanner()
     {
         foreach (ShowGroupBanner sgb in _GroupBannerSGB)
@@ -345,16 +358,79 @@ public class TeenPattiView : GameView
     }
 
     //TODO:Event Game
-    public void HandleStart(){
+    public void HandleStart()
+    {
 
     }
-    public void HandleStartBet(string objData){
+    public void HandleStartBet(string objData)
+    {
 
     }
-    public void HandleBet(string objData){
+    public void HandleBet(string objData)
+    {
 
     }
-    public void HandleFinish(string objData){
+    public void HandleFinish(string objData)
+    {
 
+    }
+    public void ClickButtonPack()
+    {
+        Debug.Log($"Click Button Pack");
+        MovePanelButton(0);
+    }
+    public void ClickButtonSideShow()
+    {
+        Debug.Log($"Click Button Side Show");
+        MovePanelButton(0);
+    }
+    public void ClickButtonBlind()
+    {
+        MovePanelButton(0);
+        SpawnChips(numChip);
+    }
+    public void ClickButtonChaal()
+    {
+        Debug.Log($"Click Button Chaal");
+        MovePanelButton(0);
+        SpawnChips(numChip*2);
+    }
+    private void MovePanelButton(int y)
+    {
+        // panelButtonRect.DOAnchorPosY(y, 0.75f);
+    }
+    private void SpawnChips(int numChips)
+    {
+        int remainingChips = numChips;
+        int chipCount = 0;
+        List<int> clonedChipValues = new List<int>();
+
+        while (remainingChips > 0)
+        {
+            int chipValue = Random.Range(1, Mathf.Min(5, remainingChips) + 1);
+            remainingChips -= chipValue;
+            Vector3 spawnPosition = spawnArea.position;
+            GameObject chipClone = Instantiate(chipPrefab, spawnPosition, Quaternion.identity, spawnArea);
+            Vector3 randomOffset = new Vector3(Random.Range(-100, 100), Random.Range(-50, 50), 0);
+            Vector3 targetPosition = chipContainer.position + randomOffset;
+            chipClone.transform.DOJump(targetPosition, 100f, 1, 1f)
+                .SetEase(Ease.OutQuad)
+                .OnComplete(() =>
+                {
+                    chipClone.transform.SetParent(chipContainer, true);
+                    chipClone.transform.localPosition = randomOffset;
+                });
+            ChipBetTeenPatti chipScript = chipClone.GetComponent<ChipBetTeenPatti>();
+            if (chipScript != null)
+            {
+                chipScript.SetChipValue(chipValue);
+            }
+
+            chipCount++;
+            clonedChipValues.Add(chipValue);
+        }
+
+        Debug.Log($"Tổng số chip đã clone: {chipCount}");
+        Debug.Log("Giá trị các chip lần lượt: " + string.Join(", ", clonedChipValues));
     }
 }

@@ -257,12 +257,12 @@ public class HandleGame
                     ((MineFindingView)gameView).ProcessResponseData(jData);
                     break;
                 }
-                //TODO:Call EventDataHere
-            // case (int)Globals.GAMEID.TEEN_PATTI:
-            //     {
-            //     HandleTeenPattiView.ProcessData(jData);
-            //     break;
-            //     }
+                //TODO:Call Event Data Here
+            case (int)Globals.GAMEID.TEEN_PATTI:
+                {
+                HandleTeenPattiView.ProcessData(jData);
+                break;
+                }
         }
     }
     public static void nextEvt()

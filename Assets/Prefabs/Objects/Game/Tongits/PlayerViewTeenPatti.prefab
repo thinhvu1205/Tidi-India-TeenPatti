@@ -398,7 +398,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &7598404461911381346
 RectTransform:
   m_ObjectHideFlags: 0
@@ -905,7 +905,7 @@ GameObject:
   - component: {fileID: 3189991984857631798}
   - component: {fileID: 7460399604938047188}
   m_Layer: 5
-  m_Name: PlayerViewTongits
+  m_Name: PlayerViewTeenPatti
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
