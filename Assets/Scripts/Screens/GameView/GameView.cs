@@ -649,7 +649,7 @@ public class GameView : BaseView
         // Config.table_mark = m;
         // Config.tableId = id;
     }
-
+//TODO:Data Player
     public void readDataPlayer(Player _player, JObject data)
     {
         //{\"M\":1000,\"ArrP\":[{\"id\":8240,\"N\":\"hienndm\",\"AG\":1920674,\"VIP\":3,\"Av\":4,\"FId\":0,\"UserType\":0,\"TotalAG\":0,\"timeToStart\":0,\"displayName\":\"hienndm\",\"numberMatchWin\":0}],\"Id\":13,\"AG\":1000000,\"S\":4,\"pot\":0,\"lstWinning\":[],\"round\":1}

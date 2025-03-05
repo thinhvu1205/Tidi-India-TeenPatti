@@ -19,6 +19,7 @@ public class TeenPattiView : GameView
     private List<List<int>> _CodeGroups = new();
     private ShowNumbOfCard _CardNumberSNOC;
     public int numChip;
+    public PlayerView playerView;
     public static TeenPattiView instance = null;
 
     protected override void Awake()
@@ -33,6 +34,8 @@ public class TeenPattiView : GameView
         buttonSideShow.onClick.AddListener(ClickButtonSideShow);
         buttonBlind.onClick.AddListener(ClickButtonBlind);
         buttonChaal.onClick.AddListener(ClickButtonChaal);
+        playerView = createPlayerView();
+        updatePositionPlayerView();
     }
     protected override void Update()
     {
@@ -47,19 +50,19 @@ public class TeenPattiView : GameView
     }
     protected override void updatePositionPlayerView()
     {
-        thisPlayer.playerView.setPosThanhBarThisPlayer();
-        int? currentDimondIndex = null;
-        string currentDimonHolder = null;
-        if (currentDimondIndex != null)
-        {
-            for (int i = 0; i < players.Count; i++)
-            {
-                if (players[i]._indexDynamic == currentDimondIndex)
-                {
-                    currentDimonHolder = players[i].displayName;
-                }
-            }
-        }
+        // thisPlayer.playerView.setPosThanhBarThisPlayer();
+        // int? currentDimondIndex = null;
+        // string currentDimonHolder = null;
+        // if (currentDimondIndex != null)
+        // {
+        //     for (int i = 0; i < players.Count; i++)
+        //     {
+        //         if (players[i]._indexDynamic == currentDimondIndex)
+        //         {
+        //             currentDimonHolder = players[i].displayName;
+        //         }
+        //     }
+        // }
         base.updatePositionPlayerView();
         for (int i = 0; i < players.Count; i++)
         {
@@ -67,13 +70,13 @@ public class TeenPattiView : GameView
             players[i].playerView.transform.localPosition = listPosView[index];
             players[i]._indexDynamic = index;
         }
-        for (int i = 0; i < players.Count; i++)
-        {
-            if (players[i].displayName == currentDimonHolder)
-            {
-                // m_DiamondIcons[players[i]._indexDynamic].SetActive(true);
-            }
-        }
+        // for (int i = 0; i < players.Count; i++)
+        // {
+        //     if (players[i].displayName == currentDimonHolder)
+        //     {
+        //         // m_DiamondIcons[players[i]._indexDynamic].SetActive(true);
+        //     }
+        // }
     }
     public override void handleCTable(string data)
     {
@@ -412,11 +415,11 @@ public class TeenPattiView : GameView
             int chipValue = Random.Range(1, Mathf.Min(5, remainingChips) + 1);
             remainingChips -= chipValue;
             Vector3 spawnPosition = spawnArea.position;
-            GameObject chipClone = Instantiate(chipPrefab, spawnPosition, Quaternion.identity, spawnArea);
+            GameObject chipClone = Instantiate(chipPrefab,spawnArea);
             Vector3 randomOffset = new Vector3(Random.Range(-100, 100), Random.Range(-50, 50), 0);
             Vector3 targetPosition = chipContainer.localPosition + randomOffset;
             chipClone.transform.SetParent(chipContainer, true);
-            chipClone.transform.DOLocalJump(targetPosition, 100f, 1, 1f)
+            chipClone.transform.DOLocalJump(targetPosition, 0f, 100, 0.5f)
                 .SetEase(Ease.OutQuad)
                 .OnComplete(() =>
                 {
