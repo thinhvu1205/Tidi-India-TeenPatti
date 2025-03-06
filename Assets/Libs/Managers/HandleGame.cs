@@ -257,6 +257,11 @@ public class HandleGame
                     ((MineFindingView)gameView).ProcessResponseData(jData);
                     break;
                 }
+            case (int)Globals.GAMEID.SLOT_ANDARBAHAR:
+            {
+                ((AndarBaharView)gameView).ProcessResponseData(jData);
+                break;
+            }
         }
     }
     public static void nextEvt()

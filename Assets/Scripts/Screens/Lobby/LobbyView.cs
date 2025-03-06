@@ -478,6 +478,14 @@ public class LobbyView : BaseView
             if (gameId == (int)GAMEID.PUSOY && UIManager.instance.PusoyJackPot > 0) item.UpdateJackpot(UIManager.instance.PusoyJackPot);
             _AllGameIGs.Add(item);
         }
+        SkeletonDataAsset skeAssetAndar = Resources.Load<SkeletonDataAsset>("AnimIconGame/8010/skeleton_SkeletonData");
+        ItemGame itemAndarBahar = Instantiate(gameItemObject,m_MiniGameIconTf).GetComponent<ItemGame>();
+        itemAndarBahar.name = ((int)GAMEID.SLOT_ANDARBAHAR).ToString();
+        itemAndarBahar.transform.localScale = Vector3.one;
+        itemAndarBahar.transform.position = Vector3.zero;
+        itemAndarBahar.gameObject.SetActive(true);
+        itemAndarBahar.setInfo((int)GAMEID.SLOT_ANDARBAHAR, skeAssetAndar, null, materialDefault, () => UIManager.instance.ShowAndarBahar());
+        _AllGameIGs.Add(itemAndarBahar);
         foreach (ItemGame ig in _AllGameIGs)
         {
             if (!slotGames.Contains(ig.gameID)) continue;

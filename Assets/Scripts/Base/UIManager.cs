@@ -647,6 +647,12 @@ public class UIManager : MonoBehaviour
                     gameView = Instantiate(loadPrefabGame("PopupMineFinding"), parentGame).GetComponent<MineFindingView>();
                     break;
                 }
+            case (int)Globals.GAMEID.SLOT_ANDARBAHAR:
+            {
+                Globals.Logging.Log("showGame ANDAR BAHAR");
+                gameView = Instantiate(loadPrefabGame("AndarBaharView"), parentGame).GetComponent<AndarBaharView>();
+                break;
+            }
             //case (int)Globals.GAMEID.ROULETTE:
             //    {
             //        Globals.Logging.Log("showGame ROULETTE");
@@ -665,6 +671,25 @@ public class UIManager : MonoBehaviour
                     break;
                 }
         }
+        if (gameView != null)
+        {
+            Globals.CURRENT_VIEW.setCurView(curGameId.ToString());
+            if (TableView.instance)
+                TableView.instance.hide(false);
+            //if (!isShowTableWithGameId(curGameId))
+            //{
+            if (lobbyView.getIsShow())
+                lobbyView.hide(false);
+            //}
+            gameView.transform.localScale = Vector3.one;
+
+            destroyAllPopup();
+        }
+    }
+
+    public void ShowAndarBahar()
+    {
+        gameView = Instantiate(loadPrefabGame("AndarBaharView"), parentGame).GetComponent<AndarBaharView>();
         if (gameView != null)
         {
             Globals.CURRENT_VIEW.setCurView(curGameId.ToString());

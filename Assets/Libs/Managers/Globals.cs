@@ -281,6 +281,7 @@ namespace Globals
         DOMINO = 8020,
         BANDAR_QQ = 8021,
         SLOT_SIXIANG = 9011,
+        SLOT_ANDARBAHAR = 9012,
         RONGHO = 8009,
         KARTU_QIU = 8805,
         MINE_FINDING = 8804
