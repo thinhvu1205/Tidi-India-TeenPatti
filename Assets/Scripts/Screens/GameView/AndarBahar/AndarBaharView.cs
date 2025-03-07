@@ -105,25 +105,25 @@ public class AndarBaharView : GameView
 }"), 5);
         await SendFakeEvent("startdealer", Random.Range(1, 50).ToString(), 2);
 
-        await SendFakeEvent("lc", "15000", 17);
+        await SendFakeEvent("lc", "16000", 2);
         
-////       await SendFakeEvent("bet", JObject.Parse(@"
-// {
-//     ""N"": ""RheaMay"",
-//     ""Num"": [[1], [1,1], [16], [7], [1,1], [9]],
-//     ""M"": [4000, 2000, 2000, 2000, 2000, 2000],
-//     ""T"": [1, 10, 30, 12, 10, 7]
-// }"), 4);
-//         await SendFakeEvent("bet", JObject.Parse(@"
-// {
-//     ""N"": ""huyvu1"",
-//     ""Num"": [[2]],
-//     ""M"": [4000],
-//     ""T"": [1]
-// }"), 5);
-        await SendFakeEvent("bm", "12", 6);
+       await SendFakeEvent("bet", JObject.Parse(@"
+ {
+     ""N"": ""RheaMay"",
+     ""Num"": [[1], [8], [0], [0], [0], [0]],
+     ""M"": [4000, 2000, 2000, 2000, 2000, 2000],
+     ""T"": [1, 4.5, 3.5, 5.5, 15, 25]
+ }"), 4);
+        await SendFakeEvent("bet", JObject.Parse(@"
+{
+    ""N"": ""huyvu1"",
+    ""Num"": [[2], [0], [20]],
+    ""M"": [4000, 4000, 4000],
+    ""T"": [1, 15, 4.5 ]
+}"), 11);
+        await SendFakeEvent("bm", "12", 12);
 
-        // await SendFakeEvent("finish", JObject.Parse(@"{""listDice"":[1,3,6],""listNumberWin"":[{""nid"":[1],""typewin"":2}]}"), 6);
+        await SendFakeEvent("finish", JObject.Parse(@"{""listDice"":[1,3,6],""listNumberWin"":[{""nid"":[1],""typewin"":2}]}"), 0);
         // await SendFakeEvent("jtable", JObject.Parse(@"{""id"":7980534,""N"":""AljonVallestero"",""AG"":74000,""VIP"":2}"), 7);
         // await SendFakeEvent("jtable", JObject.Parse(@"{""id"":6961765,""N"":""Andy"",""AG"":98000,""VIP"":3}"), 8);
         // await SendFakeEvent("start", "4000", 9);
@@ -316,13 +316,13 @@ public class AndarBaharView : GameView
                 HandleShowCard(jData);
                 break;
             case "bet":
-                HandleBet((string)jData);
+                HandleBet((string)jData["data"]);
                 break;
             case "timeout":
                 HandleAnyoneTimeOut(jData);
                 break;
             case "finish":
-                HandleFinishGame(jData);
+                HandleFinishGame((string)jData["data"]);
                 break;
             case "tip":
                 HandlerTip(jData);
@@ -418,7 +418,7 @@ public class AndarBaharView : GameView
         Player player = getPlayer(getString(data, "N"), true);
         JArray NumArr = getJArray(data, "Num");
         List<List<int>> Num = NumArr.ToObject<List<List<int>>>();
-        List<int> T = getListInt(data, "T");
+        List<float> T = getListFLoat(data, "T");
         List<int> M = getListInt(data, "M");
         for (int i = 0; i < Num.Count; i++)
         {
@@ -457,8 +457,31 @@ public class AndarBaharView : GameView
     {
     }
 
-    private void HandleFinishGame(JObject data)
+    private void HandleFinishGame(string objData)
     {
+        //stateGame = STATE_GAME.PLAYING;
+        Debug.Log("handleFinish");
+        JObject data = JObject.Parse(objData);
+        //data = JObject.Parse("{\"evt\":\"finish\",\"data\":\"{\\\"listDice\\\":[1,1,3],\\\"listNumberWin\\\":[{\\\"N\\\":\\\"1 nut\\\",\\\"typewin\\\":6},{\\\"N\\\":\\\"3 nut\\\",\\\"typewin\\\":6},{\\\"N\\\":\\\"Lo\\\",\\\"typewin\\\":1},{\\\"N\\\":\\\"1-3\\\",\\\"typewin\\\":5},{\\\"N\\\":\\\"1-2-3\\\",\\\"typewin\\\":7},{\\\"N\\\":\\\"LO 1\\\",\\\"typewin\\\":2},{\\\"N\\\":\\\"LO 3\\\",\\\"typewin\\\":3}],\\\"listUser\\\":[{\\\"pid\\\":8240,\\\"ag\\\":99153,\\\"vip\\\":3,\\\"listNumWin\\\":[{\\\"M\\\":100,\\\"N\\\":\\\"3 nut\\\",\\\"T\\\":6,\\\"W\\\":100},{\\\"M\\\":300,\\\"N\\\":\\\"LO 3\\\",\\\"T\\\":3,\\\"W\\\":300},{\\\"M\\\":100,\\\"N\\\":\\\"Lo\\\",\\\"T\\\":1,\\\"W\\\":100}]}],\\\"History\\\":[[2,5,6],[1,5,6],[2,2,6],[1,5,5],[1,1,3]]}\"}");
+        // dataFinish = data;
+        // JArray his = (JArray)data["History"];
+        // List<List<int>> History = his.ToObject<List<List<int>>>();
+        //History = fakDataHIstory;
+        // popupHistory.handleDataHistory(History);
+        // List<int> dataHistory = History.Last();
+        // History.RemoveAt(History.Count - 1);
+        buttonBet.gameObject.SetActive(false);
+        boxBet.creatDataBet();
+        isBet = false;
+        gateBet.resetOCuoc();
+        gateBet.setStateButtonBet(true);
+        onClickClear();
+        for (int i = 0; i < gateBet.listButtonBet.Count; i++)
+        {
+            gateBet.listButtonBet[i].interactable = false;
+        }
+        //----------- START EFFECT FINISH -----------//
+        
     }
 
     private void effectBetChip(Player player, int valueBet, int numberBet)
@@ -530,7 +553,7 @@ public class AndarBaharView : GameView
         return str;
     }
 
-    protected virtual int convertBetToInteger(List<int> listN, int T)
+    protected virtual int convertBetToInteger(List<int> listN, float T)
     {
         string N = convertArrayToStr(listN);
         int index = 0;
@@ -540,160 +563,48 @@ public class AndarBaharView : GameView
                 switch (N)
                 {
                     case "1":
-                        index = 1;
-                        break;
-                    case "2":
-                        index = 2;
-                        break;
-                }
-
-                break;
-            case 2:
-                switch (N)
-                {
-                    case "1":
-                        index = 3;
-                        break;
-                    case "2":
-                        index = 4;
-                        break;
-                    case "3":
-                        index = 5;
-                        break;
-                    case "4":
-                        index = 6;
-                        break;
-                    case "5":
-                        index = 7;
-                        break;
-                    case "6":
-                        index = 8;
-                        break;
-                }
-
-                break;
-            case 6:
-                switch (N)
-                {
-                    case "10":
                         index = 9;
                         break;
-                    case "11":
+                    case "2":
                         index = 10;
                         break;
                 }
-
                 break;
-
-            case 7:
-                switch (N)
-                {
-                    case "9":
-                        index = 11;
-                        break;
-                    case "12":
-                        index = 12;
-                        break;
-                }
-
-                break;
-
-            case 8:
+            case 4.5f:
                 switch (N)
                 {
                     case "8":
-                        index = 13;
+                        index = 2;
                         break;
-                    case "13":
-                        index = 14;
+                    case "20":
+                        index = 4;
                         break;
                 }
-
                 break;
-
-            case 10:
-                switch (N)
-                {
-                    case "1,1":
-                        index = 15;
-                        break;
-                    case "2,2":
-                        index = 16;
-                        break;
-                    case "3,3":
-                        index = 17;
-                        break;
-                    case "4,4":
-                        index = 18;
-                        break;
-                    case "5,5":
-                        index = 19;
-                        break;
-                    case "6,6":
-                        index = 20;
-                        break;
-                }
-
+            case 3.5f:
+                index = 1;
                 break;
-
-            case 12:
-                switch (N)
-                {
-                    case "7":
-                        index = 21;
-                        break;
-                    case "14":
-                        index = 22;
-                        break;
-                }
-
+            case 5.5f:
+                index = 3;
                 break;
-            case 18:
-                switch (N)
-                {
-                    case "6":
-                        index = 23;
-                        break;
-                    case "15":
-                        index = 24;
-                        break;
-                }
-
+            case 15:
+                index = 5;
                 break;
-            case 30:
-                switch (N)
-                {
-                    case "5":
-                        index = 25;
-                        break;
-                    case "16":
-                        index = 26;
-                        break;
-                    case "30":
-                        index = 27;
-                        break;
-                }
-
+            case 25:
+                index = 6;
                 break;
-
-            case 60:
-                switch (N)
-                {
-                    case "4":
-                        index = 28;
-                        break;
-                    case "17":
-                        index = 29;
-                        break;
-                }
-
+            case 50:
+                index = 7;
+                break;
+            case 120:
+                index = 8;
                 break;
         }
 
         return index;
     }
 
-    private JObject converIntegerToBet(int data)
+    private JObject convertIntegerToBet(int data)
     {
         //Logging.Log("converIntegerToBet HIlo1:" + data);
 
@@ -858,7 +769,7 @@ public class AndarBaharView : GameView
         for (int i = 0; i < arrBet.Count; i++)
         {
             JObject dataBet = (JObject)arrBet[i];
-            JObject objDataChip = converIntegerToBet(getInt(dataBet, "numberBet"));
+            JObject objDataChip = convertIntegerToBet(getInt(dataBet, "numberBet"));
             //Debug.Log("objDataChip=" + objDataChip.ToString());
             List<List<int>> listNumberBet = objDataChip["numberBet"].ToObject<List<List<int>>>();
             arrNumBerBet.Add(listNumberBet[0]);
@@ -879,7 +790,7 @@ public class AndarBaharView : GameView
         for (int i = 0; i < arrBet.Count; i++)
         {
             JObject dataBet = (JObject)arrBet[i];
-            JObject objDataChip = converIntegerToBet(getInt(dataBet, "numberBet"));
+            JObject objDataChip = convertIntegerToBet(getInt(dataBet, "numberBet"));
             Debug.Log("objDataChip=" + objDataChip.ToString());
             List<List<int>> listNumberBet = objDataChip["numberBet"].ToObject<List<List<int>>>();
             arrNumBerBet.Add(listNumberBet[0]);
@@ -901,7 +812,7 @@ public class AndarBaharView : GameView
         for (int i = 0; i < arrBet.Count; i++)
         {
             JObject dataBet = (JObject)arrBet[i];
-            JObject objDataChip = converIntegerToBet(getInt(dataBet, "numberBet"));
+            JObject objDataChip = convertIntegerToBet(getInt(dataBet, "numberBet"));
             Debug.Log("objDataChip=" + objDataChip.ToString());
             List<List<int>> listNumberBet = objDataChip["numberBet"].ToObject<List<List<int>>>();
             arrNumBerBet.Add(listNumberBet[0]);

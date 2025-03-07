@@ -31,6 +31,11 @@ public class ObjectParse
         JArray arr = (JArray)data[propertyName];
         return arr.ToObject<List<int>>();
     }
+    public static List<float> getListFloat(JObject data, string propertyName)
+    {
+        JArray arr = (JArray)data[propertyName];
+        return arr.ToObject<List<float>>();
+    }
     public static JArray getJArray(JObject data, string propertyName)
     {
         JArray arr = (JArray)data[propertyName];

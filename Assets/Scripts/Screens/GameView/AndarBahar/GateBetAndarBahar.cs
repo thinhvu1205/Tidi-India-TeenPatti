@@ -22,20 +22,7 @@ public class GateBetAndarBahar : MonoBehaviour
     public List<JObject> dataWin = new List<JObject>();
     public List<int> listWinResult = new List<int>();
     private int t1 = 0, t2 = 0, t3 = 0, t4 = 0, t5 = 0, t6 = 0, t7 = 0, t8 = 0, t9 = 0, t10 = 0;
-    private int t11 = 0, t12 = 0, t13 = 0, t14 = 0, t15 = 0, t16 = 0, t17 = 0, t18 = 0, t19 = 0, t20 = 0;
-
-    private int t21 = 0,
-        t22 = 0,
-        t23 = 0,
-        t24 = 0,
-        t25 = 0,
-        t26 = 0,
-        t27 = 0,
-        t28 = 0,
-        t29 = 0,
-        t30 = 0,
-        t31 = 0,
-        t32 = 0;
+ 
 
     private List<List<ChipBetAndarBahar>> listChipBetOnGate = new List<List<ChipBetAndarBahar>>();
     private List<ChipBetAndarBahar> chipPool = new List<ChipBetAndarBahar>();
@@ -53,7 +40,7 @@ public class GateBetAndarBahar : MonoBehaviour
     void Start()
     {
         listButtonBet.ForEach(btn => { btn.GetComponent<Image>().sprite = noImg; });
-        for (int i = 0; i <= 9; i++)
+        for (int i = 0; i <= 15; i++)
         {
             ChipBetAndarBahar initChip = new ChipBetAndarBahar();
             listChipPerGate.Add(initChip);
@@ -121,29 +108,6 @@ public class GateBetAndarBahar : MonoBehaviour
         t8 = 0;
         t9 = 0;
         t10 = 0;
-        t11 = 0;
-        t12 = 0;
-        t13 = 0;
-        t14 = 0;
-        t15 = 0;
-        t16 = 0;
-        t17 = 0;
-        t18 = 0;
-        t19 = 0;
-        t20 = 0;
-        t21 = 0;
-        t22 = 0;
-        t23 = 0;
-        t24 = 0;
-        t25 = 0;
-        t26 = 0;
-        t27 = 0;
-        t28 = 0;
-        t29 = 0;
-        t30 = 0;
-        t31 = 0;
-        t32 = 0;
-
 
         listLabelGateBet.ForEach(lb =>
         {
@@ -152,7 +116,7 @@ public class GateBetAndarBahar : MonoBehaviour
         });
         listGateTotalValue.Clear();
         listValueGateWin.Clear();
-        for (int i = 0; i < 10; i++)
+        for (int i = 0; i <= 15; i++)
         {
             List<ChipBetAndarBahar> tempList = new List<ChipBetAndarBahar>();
             listChipBetOnGate.Add(tempList);
@@ -166,9 +130,8 @@ public class GateBetAndarBahar : MonoBehaviour
 
     public Vector2 getPositionGateBet(int index)
     {
-        //hilo
         if (index < 1 || index > listButtonBet.Count) return Vector2.zero;
-        ;
+        
         for (int i = 0; i < listButtonBet.Count; i++)
         {
             Button objButton = listButtonBet[i];
@@ -185,19 +148,23 @@ public class GateBetAndarBahar : MonoBehaviour
     {
         ChipBetAndarBahar chipBet;
 
+        Transform parent = transform.Find(numberBet + "");
+        if (numberBet < 9)
+        {
+            parent = transform.Find("MiniBet/" + numberBet);
+        }
+        
         if (chipPool.Count == 0)
         {
-            ChipBetAndarBahar cbs = Instantiate(chip_bet_prefab, transform.Find(numberBet + ""))
-                .GetComponent<ChipBetAndarBahar>();
-
+            ChipBetAndarBahar cbs = Instantiate(chip_bet_prefab, parent).GetComponent<ChipBetAndarBahar>();
             chipPool.Add(cbs);
         }
 
         chipBet = chipPool[0];
         chipPool.RemoveAt(0);
-        chipBet.transform.SetParent(transform.Find(numberBet + ""));
+        chipBet.transform.SetParent(parent);
         chipBet.transform.localScale = Vector2.one;
-        chipBet.transform.SetSiblingIndex(50);
+        chipBet.transform.SetAsLastSibling();
         chipBet.gameObject.SetActive(true);
         chipBet.setChip(valueChip, numberBet);
         DOTween.Kill(chipBet.transform, true);
@@ -248,94 +215,6 @@ public class GateBetAndarBahar : MonoBehaviour
             case 10:
                 t10 += value;
                 valueBet = t10;
-                break;
-            case 11:
-                t11 += value;
-                valueBet = t11;
-                break;
-            case 12:
-                t12 += value;
-                valueBet = t12;
-                break;
-            case 13:
-                t13 += value;
-                valueBet = t13;
-                break;
-            case 14:
-                t14 += value;
-                valueBet = t14;
-                break;
-            case 15:
-                t15 += value;
-                valueBet = t15;
-                break;
-            case 16:
-                t16 += value;
-                valueBet = t16;
-                break;
-            case 17:
-                t17 += value;
-                valueBet = t17;
-                break;
-            case 18:
-                t18 += value;
-                valueBet = t18;
-                break;
-            case 19:
-                t19 += value;
-                valueBet = t19;
-                break;
-            case 20:
-                t20 += value;
-                valueBet = t20;
-                break;
-            case 21:
-                t21 += value;
-                valueBet = t21;
-                break;
-            case 22:
-                t22 += value;
-                valueBet = t22;
-                break;
-            case 23:
-                t23 += value;
-                valueBet = t23;
-                break;
-            case 24:
-                t24 += value;
-                valueBet = t24;
-                break;
-            case 25:
-                t25 += value;
-                valueBet = t25;
-                break;
-            case 26:
-                t26 += value;
-                valueBet = t26;
-                break;
-            case 27:
-                t27 += value;
-                valueBet = t27;
-                break;
-            case 28:
-                t28 += value;
-                valueBet = t28;
-                break;
-            case 29:
-                t29 += value;
-                valueBet = t29;
-                break;
-            case 30:
-                t30 += value;
-                valueBet = t30;
-                break;
-            case 31:
-                t31 += value;
-                valueBet = t31;
-                break;
-            case 32:
-                t32 += value;
-                valueBet = t32;
                 break;
         }
 

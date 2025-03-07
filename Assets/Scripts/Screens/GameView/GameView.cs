@@ -962,6 +962,11 @@ public class GameView : BaseView
     {
         return ObjectParse.getListInt(data, propertyName);
     }
+    public List<float> getListFLoat(JObject data, string propertyName)
+    {
+        return ObjectParse.getListFloat(data, propertyName);
+    }
+    
     public JArray getJArray(JObject data, string propertyName)
     {
         return ObjectParse.getJArray(data, propertyName);
