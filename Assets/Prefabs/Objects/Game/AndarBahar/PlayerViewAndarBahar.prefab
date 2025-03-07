@@ -1535,19 +1535,19 @@ MonoBehaviour:
   txtName: {fileID: 7350395057136671911}
   txtMoney: {fileID: 6349908722243792747}
   avatar: {fileID: 2277459490027682149}
-  timeCounDown: {fileID: 0}
-  objHost: {fileID: 0}
-  objExit: {fileID: 0}
-  dealerIcon: {fileID: 0}
-  bkgThanhBar: {fileID: 0}
-  lbChipWinLose: {fileID: 0}
-  fontWin: {fileID: 0}
-  fontLose: {fileID: 0}
+  timeCounDown: {fileID: 9006103678773435781}
+  objHost: {fileID: 4686117130176616110}
+  objExit: {fileID: 3905649094407251158}
+  dealerIcon: {fileID: 2392192230802984131}
+  bkgThanhBar: {fileID: 6623665068870662664}
+  lbChipWinLose: {fileID: 5623659239568683948}
+  fontWin: {fileID: 11400000, guid: 50d24157e8531a84285ce80e6f5cc27e, type: 2}
+  fontLose: {fileID: 11400000, guid: d8226e79a3ad345148d6eb0e25b7d612, type: 2}
   agLose: 0
   agWin: 0
   isThisPlayer: 0
   chipJackpot: 0
-  animResult: {fileID: 0}
+  animResult: {fileID: 5434126432305066448}
   aniAllIn: {fileID: 0}
   nodeCard: {fileID: 0}
   lucky9Ani: {fileID: 0}
@@ -1555,6 +1555,7 @@ MonoBehaviour:
   pots: []
   listAnimResult: []
   cards: []
+  listChipBetPl: []
 --- !u!1 &8588710382722889626
 GameObject:
   m_ObjectHideFlags: 0

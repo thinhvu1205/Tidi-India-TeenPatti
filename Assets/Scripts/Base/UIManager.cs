@@ -687,6 +687,35 @@ public class UIManager : MonoBehaviour
         }
     }
 
+    public void ShowTableViewAndarBahar()
+    {
+        JObject fakeEvent = new JObject
+        {
+            ["evt"] = "ltv",
+            ["data"] = JArray.Parse(@"
+[
+    {""mark"": 2000, ""ag"": 10000, ""agPn"": 0, ""agD"": 0, ""minAgCon"": 10000, ""maxAgCon"": 0, ""currplay"": 7, ""room"": 0, ""minChipbanker"": 0, ""maxBet"": 0, ""agLeft"": 6000, ""agRaiseFee"": 0, ""fee"": 0.0},
+    {""mark"": 5000, ""ag"": 25000, ""agPn"": 0, ""agD"": 0, ""minAgCon"": 25000, ""maxAgCon"": 0, ""currplay"": 4, ""room"": 0, ""minChipbanker"": 0, ""maxBet"": 0, ""agLeft"": 20000, ""agRaiseFee"": 0, ""fee"": 0.0},
+    {""mark"": 10000, ""ag"": 50000, ""agPn"": 0, ""agD"": 0, ""minAgCon"": 50000, ""maxAgCon"": 0, ""currplay"": 5, ""room"": 0, ""minChipbanker"": 0, ""maxBet"": 0, ""agLeft"": 40000, ""agRaiseFee"": 0, ""fee"": 0.0},
+    {""mark"": 20000, ""ag"": 100000, ""agPn"": 0, ""agD"": 0, ""minAgCon"": 100000, ""maxAgCon"": 0, ""currplay"": 3, ""room"": 0, ""minChipbanker"": 0, ""maxBet"": 0, ""agLeft"": 80000, ""agRaiseFee"": 0, ""fee"": 0.0},
+    {""mark"": 50000, ""ag"": 250000, ""agPn"": 0, ""agD"": 0, ""minAgCon"": 250000, ""maxAgCon"": 0, ""currplay"": 3, ""room"": 0, ""minChipbanker"": 0, ""maxBet"": 0, ""agLeft"": 200000, ""agRaiseFee"": 0, ""fee"": 0.0},
+    {""mark"": 100000, ""ag"": 500000, ""agPn"": 0, ""agD"": 0, ""minAgCon"": 500000, ""maxAgCon"": 0, ""currplay"": 3, ""room"": 0, ""minChipbanker"": 0, ""maxBet"": 0, ""agLeft"": 400000, ""agRaiseFee"": 0, ""fee"": 0.0},
+    {""mark"": 500000, ""ag"": 2500000, ""agPn"": 0, ""agD"": 0, ""minAgCon"": 2500000, ""maxAgCon"": 0, ""currplay"": 8, ""room"": 0, ""minChipbanker"": 0, ""maxBet"": 0, ""agLeft"": 2000000, ""agRaiseFee"": 0, ""fee"": 0.0},
+    {""mark"": 1000000, ""ag"": 5000000, ""agPn"": 0, ""agD"": 0, ""minAgCon"": 5000000, ""maxAgCon"": 0, ""currplay"": 6, ""room"": 0, ""minChipbanker"": 0, ""maxBet"": 0, ""agLeft"": 4000000, ""agRaiseFee"": 0, ""fee"": 0.0},
+    {""mark"": 2000000, ""ag"": 10000000, ""agPn"": 0, ""agD"": 0, ""minAgCon"": 10000000, ""maxAgCon"": 0, ""currplay"": 3, ""room"": 0, ""minChipbanker"": 0, ""maxBet"": 0, ""agLeft"": 8000000, ""agRaiseFee"": 0, ""fee"": 0.0}
+]").ToString()
+        };
+        
+        UIManager.instance.lobbyView.isClicked = false;
+        JArray listLtv = JArray.Parse((string)fakeEvent["data"]);
+        if (listLtv.Count <= 0) return;
+        if (TableView.instance != null)
+        {
+            TableView.instance.listDataRoomBet = listLtv;
+            TableView.instance.handleLtv(listLtv);
+        }
+    }
+    
     public void ShowAndarBahar()
     {
         gameView = Instantiate(loadPrefabGame("AndarBaharView"), parentGame).GetComponent<AndarBaharView>();

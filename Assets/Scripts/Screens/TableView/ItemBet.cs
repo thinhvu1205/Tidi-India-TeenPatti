@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using Newtonsoft.Json.Linq;
 using UnityEngine;
@@ -58,6 +59,13 @@ public class ItemBet : MonoBehaviour
 
     }
 
+    public void SetEventClickTableFake(Action callback = null)
+    {
+        Button btn = gameObject.GetComponent<Button>();
+        btn?.onClick.RemoveAllListeners();
+        btn?.onClick.AddListener(delegate { callback?.Invoke(); });
+    }
+    
     public void onClick()
     {
         if (!TableView.instance.isSelectGame)

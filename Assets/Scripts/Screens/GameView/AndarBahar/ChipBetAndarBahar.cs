@@ -6,7 +6,7 @@ using UnityEngine.UI;
 
 public class ChipBetAndarBahar : MonoBehaviour
 {
-    public int pid = 0, numberBet = 0, chipDeal = 0, chipBetSicbo = 0;
+    public int pid = 0, numberBet = 0, chipDeal = 0, chipBetAndarBahar = 0;
     private List<int> listValue;
     public List<List<ChipBetAndarBahar>> listChipBetOnGate = new List<List<ChipBetAndarBahar>>();
     private List<int> listWinResult = new List<int>();
@@ -22,7 +22,7 @@ public class ChipBetAndarBahar : MonoBehaviour
         pid = 0;
         numberBet = 0;
         chipDeal = 0;
-        chipBetSicbo = 0;
+        chipBetAndarBahar = 0;
     }
     
     public void chipMoveTo(Vector2 pos, bool isActive = true, TweenCallback cb = null)
@@ -48,7 +48,7 @@ public class ChipBetAndarBahar : MonoBehaviour
         chipDeal += value;
         //Globals.Logging.Log("Set Chip:" + chipDeal);
         numberBet = numberBetValue;
-        chipBetSicbo = value;
+        chipBetAndarBahar = value;
         Sprite spr = null;
         for (int i = 0; i < listValue.Count; i++)
         {

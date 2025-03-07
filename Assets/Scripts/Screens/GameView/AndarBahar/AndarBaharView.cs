@@ -43,7 +43,126 @@ public class AndarBaharView : GameView
         // HandleStartGame();
         // HandleStartBet();
         // HandleIsDealer();
-        HandleShowCard();
+        // HandleShowCard();
+        RunFakeData();
+    }
+    
+    private async Task RunFakeData()
+    {
+       await FakeDataFlow();
+    }
+
+    private async Task FakeDataFlow()
+    {
+        await SendFakeEvent("ctable", JObject.Parse(@"
+{
+    ""N"": ""LetisplaySicboBasicinstinct"",
+    ""M"": 2000,
+    ""ArrP"": [
+        {
+            ""id"": 8414398,
+            ""N"": ""huyvu1"",
+            ""Url"": """",
+            ""AG"": 14995920,
+            ""LQ"": 0,
+            ""VIP"": 3,
+            ""isStart"": true,
+            ""IK"": 0,
+            ""sIP"": ""10.148.0.2"",
+            ""Av"": 10,
+            ""FId"": 0,
+            ""D"": 0,
+            ""level"": 0,
+            ""displayName"": ""huyvu1"",
+            ""keyObjectInGame"": 0
+        }
+    ],
+    ""Id"": 27678,
+    ""T"": 0,
+    ""V"": 0,
+    ""AG"": 10000,
+    ""S"": 20
+}"), 1);
+        await SendFakeEvent("start", "5", 3);
+        
+        await SendFakeEvent("jtable", JObject.Parse(@"
+
+{
+    ""id"": 7158824,
+    ""N"": ""RheaMay"",
+    ""Url"": """",
+    ""AG"": 96000,
+    ""LQ"": 0,
+    ""VIP"": 3,
+    ""isStart"": true,
+    ""IK"": 0,
+    ""Av"": 8,
+    ""FId"": 0,
+    ""D"": 0,
+    ""level"": 0,
+    ""displayName"": ""RheaMay"",
+    ""keyObjectInGame"": 0
+}"), 5);
+        await SendFakeEvent("startdealer", Random.Range(1, 50).ToString(), 2);
+
+        await SendFakeEvent("lc", "15000", 17);
+        
+////       await SendFakeEvent("bet", JObject.Parse(@"
+// {
+//     ""N"": ""RheaMay"",
+//     ""Num"": [[1], [1,1], [16], [7], [1,1], [9]],
+//     ""M"": [4000, 2000, 2000, 2000, 2000, 2000],
+//     ""T"": [1, 10, 30, 12, 10, 7]
+// }"), 4);
+//         await SendFakeEvent("bet", JObject.Parse(@"
+// {
+//     ""N"": ""huyvu1"",
+//     ""Num"": [[2]],
+//     ""M"": [4000],
+//     ""T"": [1]
+// }"), 5);
+        await SendFakeEvent("bm", "12", 6);
+
+        // await SendFakeEvent("finish", JObject.Parse(@"{""listDice"":[1,3,6],""listNumberWin"":[{""nid"":[1],""typewin"":2}]}"), 6);
+        // await SendFakeEvent("jtable", JObject.Parse(@"{""id"":7980534,""N"":""AljonVallestero"",""AG"":74000,""VIP"":2}"), 7);
+        // await SendFakeEvent("jtable", JObject.Parse(@"{""id"":6961765,""N"":""Andy"",""AG"":98000,""VIP"":3}"), 8);
+        // await SendFakeEvent("start", "4000", 9);
+        // await SendFakeEvent("lc", "15000", 10);
+        // await SendFakeEvent("bet", JObject.Parse(@"{""N"":""AljonVallestero"",""M"":[10000,2000,2000],""T"":[1,10,12]}"), 11);
+        // await SendFakeEvent("bet", JObject.Parse(@"{""N"":""Andy"",""M"":[10000,2000,2000],""T"":[1,8,10]}"), 12);
+        // await SendFakeEvent("bet", JObject.Parse(@"{""N"":""RheaMay"",""M"":[56000,2000,2000],""T"":[1,18,1]}"), 13);
+        // await SendFakeEvent("finish", JObject.Parse(@"{""listDice"":[1,3,5],""listNumberWin"":[{""nid"":[1],""typewin"":2}]}"), 14);
+    }
+    
+    public async Task SendFakeEvent(string evt, object data, float delay)
+    {
+
+        JObject fakeEvent = new JObject
+        {
+            ["evt"] = evt,
+            ["data"] = data.ToString()
+        };
+
+        Debug.Log($"[{DateTime.Now}] Event: {evt}  +  {fakeEvent}");
+        resolveData(fakeEvent);
+        await Task.Delay(TimeSpan.FromSeconds(delay));
+    }
+    
+    private void resolveData(JObject jData)
+    {
+        string evt = (string)jData["evt"];
+        string data = (string)jData["data"];
+        switch (evt)
+        {
+            case "ctable":
+                Debug.Log($"[{DateTime.Now}] Event: {evt}  +  {data}");
+                handleCTable((string)jData["data"]);
+                break;
+            case "jtable":
+                handleJTable((string)jData["data"]);
+                break;
+        }
+        ProcessResponseData(jData);
     }
 
     public override void handleSTable(string objData)
@@ -184,14 +303,20 @@ public class AndarBaharView : GameView
     {
         switch ((string)jData["evt"])
         {
-            case "startdealer":
+            case "start":
                 HandleStartGame(jData);
                 break;
-            case "bm":
-                HandleStartBet(jData);
+            case "startdealer":
+                HandleIsDealer(jData);
                 break;
             case "lc":
+                HandleStartBet(jData);
+                break;
+            case "bm":
                 HandleShowCard(jData);
+                break;
+            case "bet":
+                HandleBet((string)jData);
                 break;
             case "timeout":
                 HandleAnyoneTimeOut(jData);
@@ -207,10 +332,10 @@ public class AndarBaharView : GameView
 
     private void HandleStartGame(JObject data = null)
     {
-        int timeStart = 5;
+        int timeStart = 2;
         if (data != null)
         {
-            timeStart = (int)data["actionTime"];
+            timeStart = (int)data["data"];
         }
 
         startTime.SetActive(true);
@@ -235,11 +360,11 @@ public class AndarBaharView : GameView
     public async void HandleIsDealer(JObject data = null)
     {
         int code = 15;
-        int pid = 555;
+        // int pid = 555;
         if (data != null)
         {
-            code = (int)data["C"];
-            pid = (int)data["pid"];
+            code = (int)data["data"];
+            // pid = (int)data["pid"];
         }
 
         RevealCard(code, centerCard, true, new Vector2(-1, 110), new Vector2(0, 0));
@@ -255,7 +380,7 @@ public class AndarBaharView : GameView
             objData = (string)jdata["data"];
         }
 
-        int data = int.Parse(objData ?? "16000");
+        int data = int.Parse(objData ?? "10000");
 
         DOTween.Sequence()
             .AppendCallback(EffectShowButtonBet)

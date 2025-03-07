@@ -484,7 +484,15 @@ public class LobbyView : BaseView
         itemAndarBahar.transform.localScale = Vector3.one;
         itemAndarBahar.transform.position = Vector3.zero;
         itemAndarBahar.gameObject.SetActive(true);
-        itemAndarBahar.setInfo((int)GAMEID.SLOT_ANDARBAHAR, skeAssetAndar, null, materialDefault, () => UIManager.instance.ShowAndarBahar());
+        itemAndarBahar.setInfo((int)GAMEID.SLOT_ANDARBAHAR, skeAssetAndar, null, materialDefault, () =>
+        {
+            Config.curGameId = (int)GAMEID.SLOT_ANDARBAHAR;
+            if (Config.isShowTableWithGameId(Config.curGameId) && User.userMain.VIP >= 1)
+            {
+                UIManager.instance.openTableView();
+                UIManager.instance.ShowTableViewAndarBahar();
+            }
+        });
         _AllGameIGs.Add(itemAndarBahar);
         foreach (ItemGame ig in _AllGameIGs)
         {

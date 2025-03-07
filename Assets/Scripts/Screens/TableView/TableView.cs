@@ -174,6 +174,10 @@ public class TableView : BaseView
             item.transform.localScale = Vector3.one;
 
             item.setInfo(itData, i);
+            item.SetEventClickTableFake(() =>
+            {
+                UIManager.instance.ShowAndarBahar();
+            });
             listRoomBet.Add((int)itData["mark"]);
         }
 
