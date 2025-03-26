@@ -798,13 +798,9 @@ public class SlotJuicyGardenView : BaseSlotGameView
             }
             else if (spintype == SPIN_TYPE.AUTO || spintype == SPIN_TYPE.FREE_AUTO)
             {
-                if (isInFreeSpin == false)
-                {
-                    listActionHandleSpin.Add(acShowAnimChipBay);
-                }
-
+                if (winningLines.Count == 1) listActionHandleSpin.Add(() => { showOneByOneLine(); });
+                if (isInFreeSpin == false) listActionHandleSpin.Add(acShowAnimChipBay);
             }
-
         }
         else if (winningLines.Count == 0 && getLong(finishData, "agWin") > 0)
         {
