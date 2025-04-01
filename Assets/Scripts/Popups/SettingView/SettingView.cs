@@ -32,10 +32,10 @@ public class SettingView : BaseView
         base.Start();
         //tglMusic.SetIsOnWithoutNotify(Globals.Config.isMusic);
         //tglSound.SetIsOnWithoutNotify(Globals.Config.isSound);
+        SetStatusBtn(btnMusic.transform, Globals.Config.isMusic);
+        SetStatusBtn(btnSound.transform, Globals.Config.isSound);
+        SetStatusBtn(btnVibration.transform, Globals.Config.isVibration);
 
-        btnMusic.transform.GetChild(0).gameObject.SetActive(Globals.Config.isMusic);
-        btnSound.transform.GetChild(0).gameObject.SetActive(Globals.Config.isSound);
-        btnVibration.transform.GetChild(0).gameObject.SetActive(Globals.Config.isVibration);
 
         btnGroup.gameObject.SetActive(Globals.Config.is_bl_fb);
         btnFanpage.gameObject.SetActive(Globals.Config.is_bl_fb);
@@ -61,6 +61,20 @@ public class SettingView : BaseView
         //     foreach (var item in FindObjectsByType<CCFS>(FindObjectsSortMode.None)) item.RefreshUI();
         // });
         // m_ChangeLanguageD.value = Config.language.Equals("EN") ? 1 : 0;
+    }
+
+    private void SetStatusBtn(Transform btn, bool status)
+    {
+        if (status)
+        {
+            btn.GetChild(0).gameObject.SetActive(true);
+            btn.GetChild(1).gameObject.SetActive(false);
+        }
+        else
+        {
+            btn.GetChild(0).gameObject.SetActive(false);
+            btn.GetChild(1).gameObject.SetActive(true);
+        }
     }
     public void onClickFanpage()
     {
@@ -101,8 +115,7 @@ public class SettingView : BaseView
             SoundManager.instance.soundClick();
         }
         Globals.Config.updateConfigSetting();
-        btnSound.transform.GetChild(0).gameObject.SetActive(Globals.Config.isSound);
-
+        SetStatusBtn(btnSound.transform, Globals.Config.isSound);
     }
     public void onClickMusic()
     {
@@ -110,16 +123,15 @@ public class SettingView : BaseView
         SoundManager.instance.soundClick();
         Globals.Config.updateConfigSetting();
         SoundManager.instance.playMusic();
-        btnMusic.transform.GetChild(0).gameObject.SetActive(Globals.Config.isMusic);
+        SetStatusBtn(btnMusic.transform, Globals.Config.isMusic);
     }
     public void onClickVibration()
     {
         SoundManager.instance.soundClick();
         Globals.Config.isVibration = !Globals.Config.isVibration;
         Globals.Config.updateConfigSetting();
-        btnVibration.transform.GetChild(0).gameObject.SetActive(Globals.Config.isVibration);
+        SetStatusBtn(btnVibration.transform, Globals.Config.isVibration);
         Globals.Config.Vibration();
-
     }
     public void onClickChangeLanguage()
     {

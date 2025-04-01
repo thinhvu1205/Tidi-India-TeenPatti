@@ -1,34 +1,62 @@
 
 skeleton.png
-size: 400,400
+size: 628,388
 format: RGBA8888
 filter: Linear,Linear
 repeat: none
-7
+andar
   rotate: false
-  xy: 229, 223
-  size: 128, 175
-  orig: 128, 175
-  offset: 0, 0
+  xy: 2, 128
+  size: 377, 114
+  orig: 379, 116
+  offset: 1, 1
   index: -1
-Tongits War
+bahar
   rotate: false
-  xy: 2, 100
-  size: 291, 113
-  orig: 291, 113
-  offset: 0, 0
+  xy: 2, 16
+  size: 333, 110
+  orig: 335, 112
+  offset: 1, 1
+  index: -1
+bg
+  rotate: false
+  xy: 2, 244
+  size: 446, 140
+  orig: 454, 144
+  offset: 2, 2
+  index: -1
+canh1
+  rotate: true
+  xy: 402, 4
+  size: 97, 130
+  orig: 101, 133
+  offset: 0, 1
+  index: -1
+chip
+  rotate: false
+  xy: 337, 39
+  size: 42, 42
+  orig: 44, 44
+  offset: 1, 1
+  index: -1
+chip2
+  rotate: true
+  xy: 381, 83
+  size: 159, 124
+  orig: 161, 128
+  offset: 1, 2
   index: -1
 ef
-  rotate: false
-  xy: 2, 215
-  size: 225, 183
-  orig: 225, 183
-  offset: 0, 0
+  rotate: true
+  xy: 507, 102
+  size: 126, 118
+  orig: 128, 120
+  offset: 1, 1
   index: -1
-win
-  rotate: false
-  xy: 2, 2
-  size: 207, 96
-  orig: 207, 96
+labai
+  rotate: 270
+  xy: 450, 230
+  size: 149, 161
+  orig: 149, 161
   offset: 0, 0
   index: -1

@@ -1,0 +1,55 @@
+
+btn.png
+size: 568,384
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+bgfb
+  rotate: false
+  xy: 2, 146
+  size: 484, 108
+  orig: 484, 108
+  offset: 0, 0
+  index: -1
+bgid
+  rotate: false
+  xy: 2, 36
+  size: 484, 108
+  orig: 484, 108
+  offset: 0, 0
+  index: -1
+bgplay
+  rotate: false
+  xy: 2, 256
+  size: 484, 126
+  orig: 484, 126
+  offset: 0, 0
+  index: -1
+facebook login
+  rotate: false
+  xy: 2, 2
+  size: 370, 32
+  orig: 370, 32
+  offset: 0, 0
+  index: -1
+icon
+  rotate: false
+  xy: 488, 36
+  size: 41, 40
+  orig: 41, 40
+  offset: 0, 0
+  index: -1
+login with id
+  rotate: true
+  xy: 488, 78
+  size: 304, 38
+  orig: 304, 38
+  offset: 0, 0
+  index: -1
+play guest
+  rotate: true
+  xy: 528, 78
+  size: 251, 38
+  orig: 251, 38
+  offset: 0, 0
+  index: -1

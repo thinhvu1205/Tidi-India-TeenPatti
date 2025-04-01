@@ -1,0 +1,143 @@
+{
+"skeleton": {
+	"hash": "xhfgb7nbL6RlUV6wxLZQKJIm2uA",
+	"spine": "3.8.99",
+	"x": -241.68,
+	"y": -56,
+	"width": 484,
+	"height": 126,
+	"images": "./images/",
+	"audio": ""
+},
+"bones": [
+	{ "name": "root" },
+	{ "name": "bone", "parent": "root", "x": 6.47, "y": -46.14 },
+	{ "name": "facebook login", "parent": "bone", "x": -1.65, "y": 37.6 },
+	{ "name": "icon", "parent": "bone", "length": 50.58, "rotation": 86.89, "x": -200.69, "y": 10.88 }
+],
+"slots": [
+	{ "name": "bgfb", "bone": "bone", "attachment": "bgplay" },
+	{ "name": "facebook login", "bone": "facebook login", "attachment": "play guest" },
+	{ "name": "icon", "bone": "icon", "attachment": "icon" }
+],
+"skins": [
+	{
+		"name": "default",
+		"attachments": {
+			"bgfb": {
+				"bgfb": { "x": -6.15, "y": 43.95, "width": 484, "height": 108 },
+				"bgid": { "x": -5.84, "y": 44.58, "width": 484, "height": 108 },
+				"bgplay": { "x": -6.15, "y": 53.14, "width": 484, "height": 126 }
+			},
+			"facebook login": {
+				"facebook login": { "x": 19.69, "y": 5.96, "width": 370, "height": 32 },
+				"login with id": { "x": 0.54, "y": 7.59, "width": 304, "height": 38 },
+				"play guest": { "x": -1.86, "y": 7.52, "width": 251, "height": 38 }
+			},
+			"icon": {
+				"icon": { "x": 32.71, "y": 5.51, "rotation": -86.89, "width": 41, "height": 40 }
+			}
+		}
+	}
+],
+"animations": {
+	"fb": {
+		"slots": {
+			"bgfb": {
+				"attachment": [
+					{ "name": "bgfb" }
+				]
+			},
+			"facebook login": {
+				"attachment": [
+					{ "name": "facebook login" }
+				]
+			}
+		},
+		"bones": {
+			"facebook login": {
+				"scale": [
+					{ "curve": 0.25, "c3": 0.75 },
+					{ "time": 0.6667, "x": 1.056, "y": 1.056, "curve": 0.25, "c3": 0.75 },
+					{ "time": 1.3333 }
+				]
+			}
+		}
+	},
+	"id": {
+		"slots": {
+			"bgfb": {
+				"attachment": [
+					{ "name": "bgid" }
+				]
+			},
+			"facebook login": {
+				"attachment": [
+					{ "name": "login with id" }
+				]
+			},
+			"icon": {
+				"attachment": [
+					{ "name": null }
+				]
+			}
+		},
+		"bones": {
+			"icon": {
+				"rotate": [
+					{ "curve": "stepped" },
+					{ "time": 0.5, "curve": "stepped" },
+					{ "time": 1.3333 }
+				],
+				"translate": [
+					{ "x": 4.31, "y": -2.16, "curve": 0.333, "c2": 0.33, "c3": 0.758 },
+					{ "time": 0.5 },
+					{ "time": 1.1667, "x": 5.29, "y": -2.64, "curve": 0.276, "c3": 0.621, "c4": 0.4 },
+					{ "time": 1.3333, "x": 4.31, "y": -2.16 }
+				],
+				"scale": [
+					{ "x": 1.076, "y": 0.942, "curve": 0.333, "c2": 0.33, "c3": 0.758 },
+					{ "time": 0.5 },
+					{ "time": 1.1667, "x": 1.093, "y": 0.929, "curve": 0.276, "c3": 0.621, "c4": 0.4 },
+					{ "time": 1.3333, "x": 1.076, "y": 0.942 }
+				]
+			},
+			"facebook login": {
+				"scale": [
+					{ "curve": 0.25, "c3": 0.75 },
+					{ "time": 0.6667, "x": 1.056, "y": 1.056, "curve": 0.25, "c3": 0.75 },
+					{ "time": 1.3333 }
+				]
+			}
+		}
+	},
+	"play guest": {
+		"slots": {
+			"bgfb": {
+				"attachment": [
+					{ "name": "bgplay" }
+				]
+			},
+			"facebook login": {
+				"attachment": [
+					{ "name": "play guest" }
+				]
+			},
+			"icon": {
+				"attachment": [
+					{ "name": null }
+				]
+			}
+		},
+		"bones": {
+			"facebook login": {
+				"scale": [
+					{ "curve": 0.25, "c3": 0.75 },
+					{ "time": 0.6667, "x": 1.056, "y": 1.056, "curve": 0.25, "c3": 0.75 },
+					{ "time": 1.3333 }
+				]
+			}
+		}
+	}
+}
+}

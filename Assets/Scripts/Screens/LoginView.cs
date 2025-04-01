@@ -15,6 +15,7 @@ public class LoginView : BaseView
     [SerializeField] Transform m_InputTf;
     [SerializeField] TMP_InputField m_AccountTMPIF, m_PasswordTMPIF, m_IpTMPIF;
     [SerializeField] GameObject m_CheckTest, m_ButtonLogin, m_ButtonCreateAccount, m_ButtonPlayGuest;
+    [SerializeField] private GameObject methodLoginView, popUpLoginView;
     public string accPlayNow = "";
     public string passPlayNow = "";
     bool isOpenFirst = true;
@@ -74,6 +75,7 @@ public class LoginView : BaseView
         }
 
     }
+    
     protected override void OnEnable()
     {
         Globals.Config.arrBannerLobby.Clear();
@@ -146,7 +148,6 @@ public class LoginView : BaseView
 
     //List<int> listTest = new List<int>() { 1, 22, 13, 4, 51, 26, 7,48, 39 };
 
-
     public void onClickLoginFB()
     {
         SoundManager.instance.soundClick();
@@ -199,6 +200,7 @@ public class LoginView : BaseView
         var timeEnd = new DateTimeOffset(AccessToken.CurrentAccessToken.ExpirationTime).ToUnixTimeMilliseconds();
         return timeEnd >= timeNow;
     }
+    
     public void onClickLoginToken()
     {
         isLoginingFB = true;
@@ -214,6 +216,7 @@ public class LoginView : BaseView
         //Globals.Logging.Log("token:  " + aToken.TokenString + " UserId: " + aToken.UserId);
         SocketSend.sendLogin("", Globals.User.AccessToken, false);
     }
+    
     private void AuthCallback(ILoginResult result)
     {
         if (!string.IsNullOrEmpty(result.Error))
@@ -249,7 +252,7 @@ public class LoginView : BaseView
             Globals.Logging.Log("User cancelled login");
         }
     }
-
+    
     public void onClickPlayNow()
     {
         Globals.Config.typeLogin = Globals.LOGIN_TYPE.PLAYNOW;
@@ -262,6 +265,18 @@ public class LoginView : BaseView
         SocketSend.onPlayNow();
     }
 
+    public void OnClickShowPopupLogin()
+    {
+        methodLoginView.SetActive(false);
+        popUpLoginView.SetActive(true);
+    }
+
+    public void OnClickBackToMethodLogin()
+    {
+        popUpLoginView.SetActive(false);
+        methodLoginView.SetActive(true);
+    }
+    
     public void onClickLogin()
     {
         SoundManager.instance.soundClick();
@@ -279,6 +294,7 @@ public class LoginView : BaseView
         Globals.Config.typeLogin = Globals.LOGIN_TYPE.NORMAL;
         SocketSend.sendLogin(strAcc, strPass, false);
     }
+    
     public void onClickRegister()
     {
         SoundManager.instance.soundClick();

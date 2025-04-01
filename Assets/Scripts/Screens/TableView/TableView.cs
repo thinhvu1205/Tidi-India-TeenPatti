@@ -300,7 +300,16 @@ public class TableView : BaseView
         currentTabBet = index;
         for (var i = 0; i < scrTabBet.content.childCount; i++)
         {
-            scrTabBet.content.GetChild(i).Find("Checkmark").gameObject.SetActive(obj == scrTabBet.content.GetChild(i).gameObject);
+            if (obj == scrTabBet.content.GetChild(i).gameObject)
+            {
+                scrTabBet.content.GetChild(i).Find("Checkmark").gameObject.SetActive(true);
+                scrTabBet.content.GetChild(i).GetComponent<Image>().color = new Color(0, 0, 0, 0);
+            }
+            else
+            {
+                scrTabBet.content.GetChild(i).Find("Checkmark").gameObject.SetActive(false);
+                scrTabBet.content.GetChild(i).GetComponent<Image>().color = new Color(1, 1, 1, 1);
+            }
         }
         Debug.Log((int)dataIte["mark"]);
         reloadListTable((int)dataIte["mark"]);
@@ -350,9 +359,9 @@ public class TableView : BaseView
         scrTable.gameObject.SetActive(false);
         scrBet.gameObject.SetActive(true);
         //btnTabBet.gameObject.SetActive(false);
-        btnTabBet.GetComponent<Image>().color = Color.white;
+        btnTabBet.transform.GetChild(0).gameObject.SetActive(true);
         //btnTabTable.gameObject.SetActive(true);
-        btnTabTable.GetComponent<Image>().color = Color.gray;
+        btnTabTable.transform.GetChild(0).gameObject.SetActive(false);
         currentTab = 0;
     }
     public void onClickSelectTable()
@@ -364,9 +373,9 @@ public class TableView : BaseView
         scrTable.gameObject.SetActive(true);
         scrBet.gameObject.SetActive(false);
         //btnTabBet.gameObject.SetActive(true);
-        btnTabBet.GetComponent<Image>().color = Color.gray;
+        btnTabBet.transform.GetChild(0).gameObject.SetActive(false);
         //btnTabTable.gameObject.SetActive(false);
-        btnTabTable.GetComponent<Image>().color = Color.white;
+        btnTabTable.transform.GetChild(0).gameObject.SetActive(true);
     }
 
     public void onClickQuickStart()

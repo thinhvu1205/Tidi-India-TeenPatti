@@ -17,7 +17,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &3067818867773335984
 RectTransform:
   m_ObjectHideFlags: 0
@@ -168,8 +168,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 50
-  m_fontSizeBase: 50
+  m_fontSize: 45
+  m_fontSizeBase: 45
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 0
@@ -250,7 +250,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 170, y: 170}
+  m_SizeDelta: {x: 202, y: 200}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &4688167315427512448
 CanvasRenderer:
@@ -280,9 +280,9 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 52892635cc1a947c392d969a0ad8986a, type: 3}
+  m_Sprite: {fileID: -6656684203346133685, guid: 1c91aeba4f4b4864791b0a1cd5699329, type: 3}
   m_Type: 0
-  m_PreserveAspect: 0
+  m_PreserveAspect: 1
   m_FillCenter: 1
   m_FillMethod: 4
   m_FillAmount: 1
@@ -362,9 +362,9 @@ MonoBehaviour:
   txtUser: {fileID: 9076895026673714676}
   bkg: {fileID: 4688167315427512455}
   lsBkg:
-  - {fileID: 21300000, guid: 52892635cc1a947c392d969a0ad8986a, type: 3}
-  - {fileID: 21300000, guid: d80e5547f24de42dd803975c4394c58a, type: 3}
-  - {fileID: 21300000, guid: bcb2f6eaaacaf5b44b9ed4b4feee8eb4, type: 3}
+  - {fileID: -6656684203346133685, guid: 1c91aeba4f4b4864791b0a1cd5699329, type: 3}
+  - {fileID: 7291851308156195190, guid: 85047ffb1b5d8214da291338e4f6d457, type: 3}
+  - {fileID: 2889874768756622594, guid: 3a9aa9219fe3fc747a1663bb5ed93fc1, type: 3}
   Mat_yellow: {fileID: 2100000, guid: 9c9f3d3d8392a34459b24dd894ce9de1, type: 2}
   Mat_green: {fileID: 2100000, guid: 9d8f2fcc51018de4981d270e7a34d0bd, type: 2}
   Mat_gray: {fileID: 2100000, guid: 06925db74f4cab748bb8aecb44c037fd, type: 2}
@@ -402,8 +402,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 15, y: -55}
-  m_SizeDelta: {x: 50, y: 30}
+  m_AnchoredPosition: {x: 20, y: -78}
+  m_SizeDelta: {x: 85, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &4688167315664337382
 CanvasRenderer:
@@ -461,14 +461,14 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 20
-  m_fontSizeBase: 20
+  m_fontSize: 23
+  m_fontSizeBase: 23
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 2
   m_fontSizeMax: 40
   m_fontStyle: 0
-  m_HorizontalAlignment: 2
+  m_HorizontalAlignment: 1
   m_VerticalAlignment: 512
   m_textAlignment: 65535
   m_characterSpacing: 0
@@ -497,7 +497,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 0, y: 0, z: 0, w: 0}
+  m_margin: {x: 15, y: 0, z: 0, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
