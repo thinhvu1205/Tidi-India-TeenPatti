@@ -801,6 +801,7 @@ public class SlotJuicyGardenView : BaseSlotGameView
                 if (winningLines.Count == 1) listActionHandleSpin.Add(() => { showOneByOneLine(); });
                 if (isInFreeSpin == false) listActionHandleSpin.Add(acShowAnimChipBay);
             }
+
         }
         else if (winningLines.Count == 0 && getLong(finishData, "agWin") > 0)
         {
