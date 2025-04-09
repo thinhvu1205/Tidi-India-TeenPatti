@@ -164,7 +164,8 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      fanpage_0: -8602126016204975446
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

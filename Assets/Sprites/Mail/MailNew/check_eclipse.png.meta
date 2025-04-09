@@ -164,7 +164,8 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      check_eclipse_0: 5165344237699523152
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

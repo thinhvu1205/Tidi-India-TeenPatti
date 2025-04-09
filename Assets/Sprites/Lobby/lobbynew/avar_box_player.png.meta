@@ -164,7 +164,8 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      avar_box_player_0: 3645561161576538437
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

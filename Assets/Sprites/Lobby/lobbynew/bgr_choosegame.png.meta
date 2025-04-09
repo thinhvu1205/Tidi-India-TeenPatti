@@ -164,7 +164,8 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      bgr_choosegame_0: 6352128257453848704
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

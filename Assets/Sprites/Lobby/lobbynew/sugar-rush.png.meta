@@ -164,7 +164,8 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      sugar-rush_0: 48368854146678630
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

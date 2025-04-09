@@ -164,7 +164,8 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      left_chevrony_0: -4242047021728289561
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

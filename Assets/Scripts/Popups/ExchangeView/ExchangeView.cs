@@ -377,7 +377,7 @@ public class ExchangeView : BaseView
                 JObject dt = (JObject)items[i];
                 GameObject item = i < parent.childCount ? parent.GetChild(i).gameObject : Instantiate(isAgency ? itemAgency : itemEx, parent);
                 if (isAgency) item.GetComponent<ItemAgency>().setInfo(dt);
-                else item.GetComponent<ItemEx>().setInfo(dt, () => onChooseCashOut((int)dt["ag"], (int)dt["m"]));
+                else item.GetComponent<ItemEx>().setInfo(dt, () => onChooseCashOut((int)dt["ag"], (int)dt["m"]), i%2 == 0);
                 item.SetActive(true);
                 item.transform.SetParent(parent);
                 item.transform.localScale = Vector3.one;

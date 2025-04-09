@@ -164,7 +164,8 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      tarzan_0: 1290370925427259813
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

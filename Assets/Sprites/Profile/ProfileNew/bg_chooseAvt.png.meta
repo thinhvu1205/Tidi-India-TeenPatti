@@ -164,7 +164,8 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      bg_chooseAvt_0: 8668165700518715899
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
